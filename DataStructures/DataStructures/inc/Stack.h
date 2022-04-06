@@ -1,5 +1,6 @@
 #pragma once
 //SimpleStack with fixed maxSize
+//Structure type LIFO Last In First Out
 //Complexity
 //insert O(1)
 //peek O(1)

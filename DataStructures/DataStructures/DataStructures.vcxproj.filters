@@ -26,5 +26,11 @@
     <ClInclude Include="inc\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FixedArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

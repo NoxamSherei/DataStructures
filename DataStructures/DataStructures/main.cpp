@@ -2,8 +2,10 @@
 //dataStructures
 #include "inc/HashTableWithCaining.h"
 #include "inc/Stack.h"
+#include "inc/FixedArray.h"
 
 int main() {
+
 	HashTableWithChaining<int, 5> hashTable;
 	for (size_t i = 0; i < 25; i = i + 2) {
 		hashTable.addElement(i);
