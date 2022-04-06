@@ -3,8 +3,38 @@
 #include "inc/HashTableWithCaining.h"
 #include "inc/Stack.h"
 #include "inc/FixedArray.h"
+#include "inc/Queue.h"
+#include "main.h"
 
 int main() {
+	Queue<4> queue;
+	queue.enqueue(1);
+	queue.enqueue(3);
+	queue.enqueue(4);
+	queue.enqueue(5);
+	{
+		std::ostringstream os;
+		queue.print(os);
+		std::cout << os.str();
+	}
+	printf("Peek=%d\n", queue.peek());
+	printf("Dequeue=%d\n", queue.dequeue());
+	printf("Peek=%d\n", queue.peek());
+	{
+		std::ostringstream os;
+		queue.print(os);
+		std::cout << os.str();
+	}
+
+	FixedArray<int, 10> arr1;
+	for (size_t i = 0; i < 10; i++) {
+		arr1[i] = i;
+	}
+	{
+		std::ostringstream os;
+		arr1.print(os);
+		std::cout << os.str();
+	}
 
 	HashTableWithChaining<int, 5> hashTable;
 	for (size_t i = 0; i < 25; i = i + 2) {
