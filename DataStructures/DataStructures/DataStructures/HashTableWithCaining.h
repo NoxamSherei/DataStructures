@@ -13,8 +13,7 @@ using std::ostringstream;
 //delete = O(1); worst O(n)
 //This HashTable Build not support types like string, chars
 template<typename dataType, uint32_t sizeOfTable>
-class HashTableWithChaining
-{
+class HashTableWithChaining {
 private:
 	array<vector<dataType>, sizeOfTable> data;
 	uint32_t noOfElements = 0;
@@ -22,14 +21,12 @@ private:
 public:
 	const uint32_t getNoOfElements() const { return noOfElements; }
 	const uint32_t getSizeOfTable() const { return sizeOfTable; }
-	void addElement(const dataType elementToInsert)
-	{
+	void addElement(const dataType elementToInsert) {
 		const uint32_t id = hashing(elementToInsert);
 		data[id].push_back(elementToInsert);
 		noOfElements++;
 	}
-	bool checkElement(const dataType elementToCheck) const
-	{
+	bool checkElement(const dataType elementToCheck) const {
 		if (getNoOfElements() == 0) return false;
 		const uint32_t id = hashing(elementToCheck);
 		const uint32_t size = data[id].size();
@@ -40,8 +37,7 @@ public:
 		}
 		return false;
 	}
-	bool removeElement(const dataType elementToRemove)
-	{
+	bool removeElement(const dataType elementToRemove) {
 		if (getNoOfElements() == 0) return false;
 		const uint32_t id = hashing(elementToRemove);
 		const uint32_t size = data[id].size();
@@ -56,13 +52,10 @@ public:
 		}
 		return false;
 	}
-	void printHashTable(std::ostringstream& os) const
-	{
-		for (uint32_t i = 0; i < getSizeOfTable(); i++)
-		{
+	void printHashTable(std::ostringstream& os) const {
+		for (uint32_t i = 0; i < getSizeOfTable(); i++) {
 			os << "| " << i << " [";
-			for (uint32_t j = 0; j < data[i].size(); j++)
-			{
+			for (uint32_t j = 0; j < data[i].size(); j++) {
 				os << '[' << data[i][j] << ']';
 			}
 			os << "]\n";
