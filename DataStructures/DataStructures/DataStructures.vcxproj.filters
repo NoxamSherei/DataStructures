@@ -20,10 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataStructures\HashTableWithCaining.h">
+    <ClInclude Include="inc\HashTableWithCaining.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructures\Stack.h">
+    <ClInclude Include="inc\Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

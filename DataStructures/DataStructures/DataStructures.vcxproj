@@ -142,8 +142,8 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataStructures\HashTableWithCaining.h" />
-    <ClInclude Include="DataStructures\Stack.h" />
+    <ClInclude Include="inc\HashTableWithCaining.h" />
+    <ClInclude Include="inc\Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

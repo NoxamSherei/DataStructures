@@ -1,7 +1,7 @@
 #include <iostream>
 //dataStructures
-#include "DataStructures/HashTableWithCaining.h"
-#include "DataStructures/Stack.h"
+#include "inc/HashTableWithCaining.h"
+#include "inc/Stack.h"
 
 int main() {
 	HashTableWithChaining<int, 5> hashTable;
