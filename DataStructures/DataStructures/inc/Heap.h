@@ -7,10 +7,11 @@ enum heapVersion {
 	MinHeap,
 	MaxHeap
 };
-template<heapVersion version>
 class VectorHeap {
 private:
 	vector<int32_t> heapStore;
+	heapVersion version;
+
 	const bool isEmpty() const { return heapStore.size() == 0; }
 	const uint32_t getRightElementIndex(const uint32_t id) const { return id * 2 + 1; }
 	const uint32_t getLeftElementIndex(const uint32_t id) const { return id * 2 + 2; }
@@ -44,6 +45,16 @@ private:
 		}
 	}
 public:
+	VectorHeap(heapVersion version) :version(version) {}
+	virtual ~VectorHeap() {};
+	VectorHeap(VectorHeap& otherHeap) {
+		this->heapStore = otherHeap.heapStore;
+		this->version = otherHeap.version;
+	}
+	void changeVersion(heapVersion newVersion) {
+		version = newVersion;
+		putOnTheCorrectSpot(0);
+	}
 	const uint32_t size() const { return heapStore.size(); }
 	void addElement(const int32_t element) {
 		heapStore.push_back(element);
