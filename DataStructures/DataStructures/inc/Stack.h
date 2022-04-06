@@ -38,6 +38,9 @@ public:
 		return storedData[acctualSize - 1];
 	}
 	int takeElement() {
+		if (isEmpty()) {
+			return NULL;
+		}
 		return storedData[--acctualSize];
 	}
 	bool findElement(int elementToFind) {

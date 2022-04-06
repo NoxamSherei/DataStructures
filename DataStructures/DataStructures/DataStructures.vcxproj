@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="inc\FixedArray.h" />
     <ClInclude Include="inc\HashTableWithCaining.h" />
+    <ClInclude Include="inc\Heap.h" />
     <ClInclude Include="inc\Queue.h" />
     <ClInclude Include="inc\Stack.h" />
     <ClInclude Include="main.h" />

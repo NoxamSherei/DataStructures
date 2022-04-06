@@ -5,8 +5,26 @@
 #include "inc/FixedArray.h"
 #include "inc/Queue.h"
 #include "main.h"
+#include "inc/Heap.h"
 
 int main() {
+	VectorHeap<heapVersion::MinHeap> minHeap;
+	VectorHeap<heapVersion::MaxHeap> maxHeap;
+	int testTable[15]{ 42,69,102,402,5,2,9,10,30,70,10,25,64,239,234 };
+	for (size_t i = 0; i < 15; i++) {
+		minHeap.addElement(testTable[i]);
+		maxHeap.addElement(testTable[i]);
+	}
+	{
+		std::ostringstream os;
+		minHeap.print(os);
+		std::cout << os.str();
+	}
+	{
+		std::ostringstream os;
+		maxHeap.print(os);
+		std::cout << os.str();
+	}
 	Queue<4> queue;
 	queue.enqueue(1);
 	queue.enqueue(3);
