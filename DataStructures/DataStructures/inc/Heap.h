@@ -29,18 +29,21 @@ private:
 		if (currentId != 0) {
 			if (version == heapVersion::MinHeap ? checkIfIsSmaller(currentId, checkedId) : checkIfIsLarger(currentId, checkedId)) {
 				swap(currentId, checkedId);
+				putOnTheCorrectSpot(checkedId);
 			}
 		}
 		checkedId = getRightElementIndex(currentId);
 		if (checkedId <= size()) {
 			if (version == heapVersion::MinHeap ? checkIfIsLarger(currentId, checkedId) : checkIfIsSmaller(currentId, checkedId)) {
 				swap(currentId, checkedId);
+				putOnTheCorrectSpot(checkedId);
 			}
 		}
 		checkedId = getLeftElementIndex(currentId);
 		if (checkedId <= size()) {
 			if (version == heapVersion::MinHeap ? checkIfIsLarger(currentId, checkedId) : checkIfIsSmaller(currentId, checkedId)) {
 				swap(currentId, checkedId);
+				putOnTheCorrectSpot(checkedId);
 			}
 		}
 	}

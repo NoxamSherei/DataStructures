@@ -8,7 +8,7 @@
 #include "inc/Heap.h"
 
 int main() {
-	VectorHeap minHeap(heapVersion::MinHeap);
+	/*VectorHeap minHeap(heapVersion::MinHeap);
 	VectorHeap maxHeap(heapVersion::MaxHeap);
 	int testTable[15]{ 42,69,102,402,5,2,9,10,30,70,10,25,64,239,234 };
 	for (size_t i = 0; i < 15; i++) {
@@ -50,9 +50,9 @@ int main() {
 		std::ostringstream os;
 		queue.print(os);
 		std::cout << os.str();
-	}
+	}*/
 
-	FixedArray<int, 10> arr1;
+	FixArray<int, 10> arr1;
 	for (size_t i = 0; i < 10; i++) {
 		arr1[i] = i;
 	}
@@ -60,6 +60,14 @@ int main() {
 		std::ostringstream os;
 		arr1.print(os);
 		std::cout << os.str();
+	}
+	try {
+		std::cout << arr1;
+		arr1[11];
+	}
+	catch(std::exception e)
+	{
+		std::cout << "WAS FAULT";
 	}
 
 	HashTableWithChaining<int, 5> hashTable;

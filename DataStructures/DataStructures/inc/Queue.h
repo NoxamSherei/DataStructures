@@ -4,7 +4,7 @@
 template<int maxSize>
 class Queue {
 private:
-	FixedArray<int, maxSize> queue;
+	FixArray<int, maxSize> queue;
 	int acctualQueueMembers=0;
 public:
 	bool enqueue(int member) {
