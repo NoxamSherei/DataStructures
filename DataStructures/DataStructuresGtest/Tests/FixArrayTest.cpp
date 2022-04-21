@@ -2,19 +2,21 @@
 #include "..\pch.h"
 #include "..\..\DataStructures\inc\FixedArray.h"
 #include <iostream>
+#include <array>
 class ArrayTestFixture :public ::testing::Test {
 public:
 };
 
 TEST_F(ArrayTestFixture, testFixedArrayConstructorsAndAssaigment) {
 	FixArray<int, 10> source;
+	source.fill(0);
 	EXPECT_THAT(source.getSize(),10);
 	source[2] = 22;
 	//CopyConstructor
 	FixArray<int, 10> arrayA(source);
 	arrayA[1] = 10;
-	ASSERT_NE(source.getArray(), arrayA.getArray());
-	ASSERT_NE(nullptr, arrayA.getArray());
+	ASSERT_NE(source.getBegin(), arrayA.getBegin());
+	ASSERT_NE(nullptr, arrayA.getBegin());
 	EXPECT_EQ(source[1], 0);
 	EXPECT_EQ(source[2], 22);
 	EXPECT_EQ(arrayA[1], 10);
@@ -22,24 +24,24 @@ TEST_F(ArrayTestFixture, testFixedArrayConstructorsAndAssaigment) {
 	//CopyAssaigment
 	FixArray<int, 10> arrayB = source;
 	arrayB[1] = 20;
-	ASSERT_NE(source.getArray(), arrayB.getArray());
-	ASSERT_NE(nullptr, arrayB.getArray());
+	ASSERT_NE(source.getBegin(), arrayB.getBegin());
+	ASSERT_NE(nullptr, arrayB.getBegin());
 	EXPECT_EQ(source[1], 0);
 	EXPECT_EQ(source[2], 22);
 	EXPECT_EQ(arrayB[1], 20);
 	EXPECT_EQ(arrayB[2], 22);
 	//MoveConstructor
-	auto lastPosA = arrayA.getArray();
+	auto lastPosA = arrayA.getBegin();
 	FixArray<int, 10> arrayC(std::move(arrayA));
-	ASSERT_NE(arrayC.getArray(), arrayA.getArray());
-	ASSERT_THAT(arrayA.getArray(), nullptr);
-	ASSERT_THAT(arrayC.getArray(), lastPosA);
+	ASSERT_NE(arrayC.getBegin(), arrayA.getBegin());
+	ASSERT_THAT(arrayA.getBegin(), nullptr);
+	ASSERT_THAT(arrayC.getBegin(), lastPosA);
 	//MoveAssaigment
-	auto lastPosB = arrayB.getArray();
+	auto lastPosB = arrayB.getBegin();
 	FixArray<int, 10> arrayD = std::move(arrayB);
-	ASSERT_NE(arrayD.getArray(), arrayB.getArray());
-	ASSERT_THAT(arrayB.getArray(), nullptr);
-	ASSERT_THAT(arrayD.getArray(), lastPosB);
+	ASSERT_NE(arrayD.getBegin(), arrayB.getBegin());
+	ASSERT_THAT(arrayB.getBegin(), nullptr);
+	ASSERT_THAT(arrayD.getBegin(), lastPosB);
 
 	EXPECT_EQ(arrayC[1], 10);
 	EXPECT_EQ(arrayC[2], 22);
@@ -62,6 +64,19 @@ TEST_F(ArrayTestFixture, testFixedArrayErrorHandling) {
 	catch (std::exception e) {
 		FAIL();
 	}
+}
+TEST_F(ArrayTestFixture, testFixedArrayOperators) {
+	FixArray<int, 10> testArray1;
+	FixArray<int, 10> testArray2;
+	testArray1.fill(5);
+	testArray2.fill(5);
+	//std::cin >> testArray2;
+	std::cout << testArray1 << std::endl;
+	std::cout << testArray2 << std::endl;
+	std::cout << testArray1 << "+" << testArray2 << "=" << (testArray1 + testArray2) << std::endl;
+	std::cout << testArray1 << "-" << testArray2 << "=" << (testArray1 - testArray2) << std::endl;
+	std::cout << testArray1 << "*" << testArray2 << "=" << (testArray1 * testArray2) << std::endl;
+	std::cout << testArray1 << "/" << testArray2 << "=" << (testArray1 / testArray2) << std::endl;
 }
 
 TEST_F(ArrayTestFixture, testFixedArray) {

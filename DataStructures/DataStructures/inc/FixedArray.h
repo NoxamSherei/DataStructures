@@ -21,7 +21,7 @@ struct InvalidSize :public std::exception {
 	}
 };
 
-template<typename storedDataType, int maxSize>
+template<typename storedDataType, size_t maxSize>
 class FixArray {
 private:
 	storedDataType* arr;
@@ -32,7 +32,6 @@ public:
 			throw InvalidSize(maxSize);
 		}
 		arr = new storedDataType[maxSize];
-		memset(arr, 0, maxSize * sizeof(storedDataType));
 	}
 	//Copy Constructor
 	FixArray(const FixArray& intArr) :arr(new storedDataType[maxSize]) {
@@ -61,11 +60,19 @@ public:
 	bool ifIndexIsValid(const int& i) const {
 		return i < 0 or i >= maxSize;
 	}
-	int* getArray() {
-		return this->arr;
+	void fill(const storedDataType& data) {
+		for (auto it = this->getBegin(); it != this->getEnd(); it++) {
+			*it = data;
+		}
 	}
-	int getSize() {
+	size_t getSize() {
 		return maxSize;
+	}
+	storedDataType* getBegin() {
+		return &arr[0];
+	}
+	storedDataType* getEnd() {
+		return &arr[maxSize];
 	}
 
 	storedDataType& operator[](int i) const {
@@ -81,6 +88,30 @@ public:
 		}
 		os << ']';
 	}
+	friend FixArray<storedDataType, maxSize> operator+(FixArray<storedDataType, maxSize> objLeft, FixArray<storedDataType, maxSize>& objRight) {
+		for (size_t i = 0; i < maxSize; i++) {
+			objLeft[i] = objLeft[i] + objRight[i];
+		}
+		return objLeft;
+	}
+	friend FixArray<storedDataType, maxSize> operator-(FixArray<storedDataType, maxSize> objLeft, FixArray<storedDataType, maxSize>& objRight) {
+		for (size_t i = 0; i < maxSize; i++) {
+			objLeft[i] = objLeft[i] - objRight[i];
+		}
+		return objLeft;
+	}
+	friend FixArray<storedDataType, maxSize> operator*(FixArray<storedDataType, maxSize> objLeft, FixArray<storedDataType, maxSize>& objRight) {
+		for (size_t i = 0; i < maxSize; i++) {
+			objLeft[i] = objLeft[i] * objRight[i];
+		}
+		return objLeft;
+	}
+	friend FixArray<storedDataType, maxSize> operator/(FixArray<storedDataType, maxSize> objLeft, FixArray<storedDataType, maxSize>& objRight) {
+		for (size_t i = 0; i < maxSize; i++) {
+			objLeft[i] = objLeft[i] / objRight[i];
+		}
+		return objLeft;
+	}
 
 	friend std::ostream& operator<<(std::ostream& os, const FixArray<storedDataType, maxSize>& obj) {
 		os << "[ ";
@@ -89,6 +120,14 @@ public:
 		}
 		os << "]";
 		return os;
+	}
+
+	friend std::istream& operator>>(std::istream& input, FixArray<storedDataType, maxSize>& obj) {
+		for (size_t i = 0; i < maxSize; i++) {
+			std::cout << i << "/" << maxSize << ":=";
+			input >> obj[i];
+		}
+		return input;
 	}
 };
 
