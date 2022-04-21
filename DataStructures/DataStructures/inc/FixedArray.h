@@ -81,9 +81,9 @@ public:
 		}
 		return arr[i];
 	}
-	void print(std::ostringstream& os, int to = maxSize) {
+	void print(std::ostringstream& os, int from = 0, int to = maxSize) {
 		os << "[ ";
-		for (size_t i = 0; i < to; i++) {
+		for (size_t i = from; i < to; i++) {
 			os << arr[i] << ' ';
 		}
 		os << ']';

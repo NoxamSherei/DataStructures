@@ -71,16 +71,27 @@ TEST_F(ArrayTestFixture, testFixedArrayOperators) {
 	testArray1.fill(5);
 	testArray2.fill(5);
 	//std::cin >> testArray2;
+	testing::internal::CaptureStdout();
 	std::cout << testArray1 << std::endl;
 	std::cout << testArray2 << std::endl;
 	std::cout << testArray1 << "+" << testArray2 << "=" << (testArray1 + testArray2) << std::endl;
 	std::cout << testArray1 << "-" << testArray2 << "=" << (testArray1 - testArray2) << std::endl;
 	std::cout << testArray1 << "*" << testArray2 << "=" << (testArray1 * testArray2) << std::endl;
 	std::cout << testArray1 << "/" << testArray2 << "=" << (testArray1 / testArray2) << std::endl;
+	std::string output = testing::internal::GetCapturedStdout();
+	std::string expected =
+		"[ 5 5 5 5 5 5 5 5 5 5 ]\n"
+		"[ 5 5 5 5 5 5 5 5 5 5 ]\n"
+		"[ 5 5 5 5 5 5 5 5 5 5 ]+[ 5 5 5 5 5 5 5 5 5 5 ]=[ 10 10 10 10 10 10 10 10 10 10 ]\n"
+		"[ 5 5 5 5 5 5 5 5 5 5 ]-[ 5 5 5 5 5 5 5 5 5 5 ]=[ 0 0 0 0 0 0 0 0 0 0 ]\n"
+		"[ 5 5 5 5 5 5 5 5 5 5 ]*[ 5 5 5 5 5 5 5 5 5 5 ]=[ 25 25 25 25 25 25 25 25 25 25 ]\n"
+		"[ 5 5 5 5 5 5 5 5 5 5 ]/[ 5 5 5 5 5 5 5 5 5 5 ]=[ 1 1 1 1 1 1 1 1 1 1 ]\n";
+	ASSERT_THAT(expected, output);
 }
 
 TEST_F(ArrayTestFixture, testFixedArray) {
 	FixArray<int, 10> testArray;
+	testArray.fill(0);
 	{
 		testing::internal::CaptureStdout();
 		std::cout << testArray;
@@ -98,12 +109,13 @@ TEST_F(ArrayTestFixture, testFixedArray) {
 	{
 		testing::internal::CaptureStdout();
 		std::cout << testArray;
-		std::ostringstream os, os2;
+		std::ostringstream os, os2,os3;
 		testArray.print(os);
 		testArray.print(os2, 5);
+		testArray.print(os3, 4, 8);
 		std::string output = testing::internal::GetCapturedStdout();
 		ASSERT_THAT("[ 0 1 2 3 4 5 6 7 8 9 ]", output);
 		ASSERT_THAT("[ 0 1 2 3 4 5 6 7 8 9 ]", os.str());
-		ASSERT_THAT("[ 0 1 2 3 4 ]", os2.str());
+		ASSERT_THAT("[ 4 5 6 7 ]", os3.str());
 	}
 }
