@@ -1,26 +1,8 @@
 #pragma once
 #include <iostream>
+#include "errorStructs/ErrorStructs.h"
 //implement class to store Int data with principle RAII 
 //Aplicable Rule 5, implement: constructor,destructor, copyconstructor, move constructor, move assaigment
-
-struct InvalidIndexValue :public std::exception {
-	int id;
-	InvalidIndexValue(int id) :id(id) {};
-	std::string what() {
-		std::ostringstream os;
-		os << "Invalid Index Value = [" << id << "]\n";
-		return os.str();
-	}
-};
-
-struct InvalidSize :public std::exception {
-	int id;
-	InvalidSize(int id) :id(id) {};
-	std::string what() {
-		return "Invalid Size Value =" + id;
-	}
-};
-
 template<typename storedDataType, size_t maxSize>
 class FixArray {
 private:
@@ -29,7 +11,7 @@ public:
 	//Constructor
 	FixArray() {
 		if (maxSize <= 0) {
-			throw InvalidSize(maxSize);
+			throw ErrorInvalidSize(maxSize);
 		}
 		arr = new storedDataType[maxSize];
 	}
@@ -77,7 +59,7 @@ public:
 
 	storedDataType& operator[](int i) const {
 		if (ifIndexIsValid(i)) {
-			throw InvalidIndexValue(i);
+			throw ErrorInvalidIndexValue(i);
 		}
 		return arr[i];
 	}

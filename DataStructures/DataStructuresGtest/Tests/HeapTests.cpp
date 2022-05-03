@@ -42,15 +42,15 @@ TEST_F(HeapFixture, FindRemoveTakeFromHeap) {
 	EXPECT_EQ(minHeap->findElement(40), true);
 	EXPECT_EQ(minHeap->findElement(50), true);
 	EXPECT_EQ(maxHeap->findElement(50), true);
-	EXPECT_EQ(minHeap->getIdElement(45), NULL);
+	EXPECT_EQ(minHeap->getIdElement(45), -1);
 	EXPECT_NE(minHeap->getIdElement(50), NULL);
-	EXPECT_EQ(maxHeap->getIdElement(45), NULL);
+	EXPECT_EQ(maxHeap->getIdElement(45), -1);
 	ASSERT_NE(maxHeap->getIdElement(50), NULL);
 	EXPECT_EQ(minHeap->size(), sizeOfTestTable);
 	EXPECT_EQ(maxHeap->size(), sizeOfTestTable);
 	//Not existing Data to Take
-	EXPECT_EQ(minHeap->takeElementWithId(minHeap->getIdElement(45)), NULL);
-	EXPECT_EQ(maxHeap->takeElementWithId(maxHeap->getIdElement(45)), NULL);
+	EXPECT_EQ(minHeap->takeElementWithId(minHeap->getIdElement(45)), -1);
+	EXPECT_EQ(maxHeap->takeElementWithId(maxHeap->getIdElement(45)), -1);
 	EXPECT_EQ(minHeap->size(), sizeOfTestTable);
 	ASSERT_EQ(maxHeap->size(), sizeOfTestTable);
 	//ExistingDataToTake
@@ -58,18 +58,18 @@ TEST_F(HeapFixture, FindRemoveTakeFromHeap) {
 	EXPECT_EQ(maxHeap->takeElementWithId(maxHeap->getIdElement(50)), 50);
 	EXPECT_EQ(minHeap->findElement(50), false);
 	EXPECT_EQ(maxHeap->findElement(50), false);
-	EXPECT_EQ(minHeap->size(), 1 - sizeOfTestTable);
-	ASSERT_EQ(maxHeap->size(), 1 - sizeOfTestTable);
+	EXPECT_EQ(minHeap->size(), sizeOfTestTable-1);
+	ASSERT_EQ(maxHeap->size(), sizeOfTestTable-1);
 	//Not existing Data to Remove
 	minHeap->removeElementWithId(minHeap->getIdElement(45));
 	maxHeap->removeElementWithId(maxHeap->getIdElement(45));
-	EXPECT_EQ(minHeap->size(), 1-sizeOfTestTable);
-	ASSERT_EQ(maxHeap->size(), 1-sizeOfTestTable);
+	EXPECT_EQ(minHeap->size(), sizeOfTestTable-1);
+	ASSERT_EQ(maxHeap->size(), sizeOfTestTable-1);
 	//existing Data to Remove
 	minHeap->removeElementWithId(minHeap->getIdElement(40));
 	maxHeap->removeElementWithId(maxHeap->getIdElement(40));
-	EXPECT_EQ(minHeap->size(), 2 - sizeOfTestTable);
-	ASSERT_EQ(maxHeap->size(), 2 - sizeOfTestTable);
+	EXPECT_EQ(minHeap->size(), sizeOfTestTable-2);
+	ASSERT_EQ(maxHeap->size(), sizeOfTestTable-2);
 }
 
 TEST_F(HeapFixture, PeekAndTakeTopHeap) {

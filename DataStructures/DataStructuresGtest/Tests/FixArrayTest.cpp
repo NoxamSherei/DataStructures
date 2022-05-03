@@ -55,10 +55,10 @@ TEST_F(ArrayTestFixture, testFixedArrayErrorHandling) {
 		d[11];
 		FAIL();
 	}
-	catch (InvalidSize e) {
+	catch (ErrorInvalidSize e) {
 		FAIL();
 	}
-	catch (InvalidIndexValue e) {
+	catch (ErrorInvalidIndexValue e) {
 		ASSERT_THAT(e.what(), "Invalid Index Value = [11]\n");
 	}
 	catch (std::exception e) {

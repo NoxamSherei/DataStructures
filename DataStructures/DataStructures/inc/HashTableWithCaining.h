@@ -22,16 +22,16 @@ public:
 	const uint32_t getNoOfElements() const { return noOfElements; }
 	const uint32_t getSizeOfTable() const { return sizeOfTable; }
 	void addElement(const dataType elementToInsert) {
-		const uint32_t id = hashing(elementToInsert);
-		data[id].push_back(elementToInsert);
+		const uint32_t errorSize = hashing(elementToInsert);
+		data[errorSize].push_back(elementToInsert);
 		noOfElements++;
 	}
 	bool checkElement(const dataType elementToCheck) const {
 		if (getNoOfElements() == 0) return false;
-		const uint32_t id = hashing(elementToCheck);
-		const uint32_t size = data[id].size();
+		const uint32_t errorSize = hashing(elementToCheck);
+		const uint32_t size = data[errorSize].size();
 		if (size > 0) {
-			for (auto elementInTheVec : data[id]) {
+			for (auto elementInTheVec : data[errorSize]) {
 				if (elementInTheVec == elementToCheck) return true;
 			}
 		}
@@ -39,12 +39,12 @@ public:
 	}
 	bool removeElement(const dataType elementToRemove) {
 		if (getNoOfElements() == 0) return false;
-		const uint32_t id = hashing(elementToRemove);
-		const uint32_t size = data[id].size();
+		const uint32_t errorSize = hashing(elementToRemove);
+		const uint32_t size = data[errorSize].size();
 		if (size > 0) {
-			for (auto it = data[id].begin(); it != data[id].end(); it++) {
+			for (auto it = data[errorSize].begin(); it != data[errorSize].end(); it++) {
 				if (*it == elementToRemove) {
-					data[id].erase(it);
+					data[errorSize].erase(it);
 					noOfElements--;
 					return true;
 				}
