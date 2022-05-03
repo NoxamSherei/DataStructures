@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\BinarySearchTree.h" />
     <ClInclude Include="inc\errorStructs\ErrorStructs.h" />
     <ClInclude Include="inc\FixedArray.h" />
     <ClInclude Include="inc\HashTableWithCaining.h" />

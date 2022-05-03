@@ -44,5 +44,8 @@
     <ClInclude Include="inc\errorStructs\ErrorStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inc\BinarySearchTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
