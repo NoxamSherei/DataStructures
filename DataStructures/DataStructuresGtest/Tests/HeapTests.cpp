@@ -1,18 +1,20 @@
 #pragma once
 #include "../pch.h"
-#include "../../DataStructures/inc/Heap.h"
+#include "../../DataStructures/inc/VectorHeap.h"
+
+#include <array>
 
 class HeapFixture :public ::testing::Test {
 protected:
-	int sizeOfTestTable = 15;
-	int* testTable = new int[15]{ 40, 20, 10, 50, 100, 110, 120, 90, 80, 150, 130, 140, 30, 60, 70 };
-	VectorHeap* minHeap;
-	VectorHeap* maxHeap;
+	static constexpr int sizeOfTestTable = 15;
+	std::array<int, sizeOfTestTable> testTable{ 40, 20, 10, 50, 100, 110, 120, 90, 80, 150, 130, 140, 30, 60, 70 };
+	std::shared_ptr < VectorHeap> minHeap;
+	std::shared_ptr<VectorHeap> maxHeap;
 
 public:
 	void SetUp() {
-		minHeap = new VectorHeap(VectorHeap::heapVersion::MinHeap);
-		maxHeap = new VectorHeap(VectorHeap::heapVersion::MaxHeap);
+		minHeap = std::make_shared<VectorHeap>(VectorHeap::heapVersion::MinHeap);
+		maxHeap = std::make_shared<VectorHeap>(VectorHeap::heapVersion::MaxHeap);
 		EXPECT_EQ(minHeap->getVersion(), VectorHeap::heapVersion::MinHeap);
 		EXPECT_EQ(maxHeap->getVersion(), VectorHeap::heapVersion::MaxHeap);
 	}

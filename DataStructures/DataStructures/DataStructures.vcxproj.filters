@@ -18,6 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\VectorHeap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\HashTableWithCaining.h">
@@ -35,7 +38,7 @@
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Heap.h">
+    <ClInclude Include="inc\VectorHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\PriorityQueue.h">

@@ -1,3 +1,9 @@
+#include <iostream>
+#include "inc/VectorHeap.h"
+
+using namespace std;
+
 int main() {
-	return 0;
+    VectorHeap minHeap(VectorHeap::heapVersion::MinHeap);
+    return 0;
 }

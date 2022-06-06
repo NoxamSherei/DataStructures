@@ -42,13 +42,19 @@ private:
 			if (node->leftExist())handleSearchOperation(value, node->leftLeaf);
 			else return false;
 	}
-	bool handleRemoveOperation(const int32_t& value, std::shared_ptr<BSTNode>& node) {
+	bool handleRemoveOperation(const int32_t& value, std::shared_ptr<BSTNode>& node, std::shared_ptr<BSTNode> backNode = nullptr) {
 		if (value == *node) {
 			int childNo = 0;
 			if (node->leftExist())childNo++;
 			if (node->rightExist())childNo++;
 			switch (childNo) {
 			case 0:
+				if (backNode != nullptr) {
+					 
+				}
+				else {
+
+				}
 				break;
 			case 1:
 				break;
@@ -59,10 +65,10 @@ private:
 		}
 		//check other nodes
 		else if (value > *node)
-			if (node->rightExist())handleRemoveOperation(value, node->rightLeaf);
+			if (node->rightExist())handleRemoveOperation(value, node->rightLeaf, node);
 			else return false;
 		else
-			if (node->leftExist())handleRemoveOperation(value, node->leftLeaf);
+			if (node->leftExist())handleRemoveOperation(value, node->leftLeaf, node);
 			else return false;
 	}
 public:
